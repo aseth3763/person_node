@@ -12,7 +12,7 @@ app.set("views",path.resolve("./views"))// Specify the directory for views
 
 
 
-  //
+  //comment 
   
 const personRouter = require("./Router/personRoutes")
 app.use("/person",personRouter)
