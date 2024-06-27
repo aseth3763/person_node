@@ -23,9 +23,6 @@ const Person = require("../person")
     const postNewData = async(req,res) =>{
         try {
             const {name,email,age} = req.body
-            console.log(name);
-            console.log(email);
-            console.log(age);
 
             if(!name) {
                 return res.status(400).json({
@@ -55,7 +52,6 @@ const Person = require("../person")
                 message: "Name already exists"
                 });
                 }
-              console.log(existingPerson);
 
             const new_data  = new Person({
                 name,email,age
@@ -136,7 +132,6 @@ const Person = require("../person")
        
       }
     catch (error) {
-      console.log(error)
       res.status(500).json({error:"Internal Server Error"})
     }
   }
@@ -144,9 +139,7 @@ const Person = require("../person")
   const updatedData =  async (req,res)=>{
     try {
       const findId = req.params.id
-      console.log(findId);
-    
-  
+
       const response = await Person.findByIdAndUpdate(findId,{"age":24},{
         new : true,
         runValidators:true
@@ -171,15 +164,12 @@ const Person = require("../person")
       const personId = req.params.id
   
       const response = await Person.findByIdAndDelete(personId)
-      console.log(response);
       if(!response){
         return res.status(404).json({error: "Person not found"})
       }
       
-      console.log("Data deleted");
       res.status(200).json(response)
     } catch (error) {
-      console.log(error);
       res.status(505).json({error : " Error hai bhai"})
     }
   
